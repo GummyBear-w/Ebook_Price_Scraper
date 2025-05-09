@@ -5,13 +5,16 @@ on:
     - cron: '0 02 * * *'  # 每天 02:00 UTC（台灣時間早上 10:00）
   workflow_dispatch:  # 允許手動觸發
 
+permissions:
+  contents: write
+
 jobs:
   run-scraper:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v4
