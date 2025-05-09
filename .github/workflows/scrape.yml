@@ -26,9 +26,13 @@ jobs:
         run: python daily_price_scraper.py
 
       - name: Commit updated CSV
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}
           git add book_prices.csv
-          git commit -m "📈 Auto update book_prices.csv" || echo "No changes"
-          git push
+          git commit -m "🧾 Auto update book_prices.csv" || echo "No changes"
+          git push origin HEAD:${{ github.ref }}
+
