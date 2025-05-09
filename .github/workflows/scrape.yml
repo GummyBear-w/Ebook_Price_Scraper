@@ -1,0 +1,34 @@
+name: Daily Ebook Price Scraper
+
+on:
+  schedule:
+    - cron: '0 12 * * *'  # 每天 00:00 UTC（台灣時間早上 8:00）
+  workflow_dispatch:  # 允許手動觸發
+
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run scraper
+        run: python daily_price_scraper.py
+
+      - name: Commit updated CSV
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add book_prices.csv
+          git commit -m "📈 Auto update book_prices.csv" || echo "No changes"
+          git push
