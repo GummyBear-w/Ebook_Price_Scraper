@@ -2,7 +2,7 @@ name: Daily Ebook Price Scraper
 
 on:
   schedule:
-    - cron: '0 12 * * *'  # 每天 00:00 UTC（台灣時間早上 8:00）
+    - cron: '0 02 * * *'  # 每天 00:00 UTC（台灣時間早上 10:00）
   workflow_dispatch:  # 允許手動觸發
 
 jobs:
