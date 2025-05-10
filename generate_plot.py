@@ -23,8 +23,17 @@ for isbn, group in df.groupby("ISBN"):
         y="價格",
         color="書名",
         line_group="ISBN",
-        hover_data=["作者", "連結"],
-        title=group["書名"].iloc[0]
+        title=group["書名"].iloc[0],
+        hover_data=["作者", "ISBN"]
+    )
+    fig.update_layout(
+        xaxis=dict(
+            tickformat="%Y-%m-%d",
+            dtick="D1",
+            tickangle=-30
+        ),
+        margin=dict(l=40, r=40, t=40, b=40),
+        height=300
     )
     plot_path = f"plot_{isbn}.html"
     fig.write_html(f"docs/{plot_path}", include_plotlyjs="cdn", full_html=False)
@@ -44,18 +53,18 @@ authors = ["全部作者"] + sorted(df["作者"].unique())
 with open("docs/index.html", "w", encoding="utf-8") as f:
     f.write("""
 <!DOCTYPE html>
-<html lang="zh">
+<html lang=\"zh\">
 <head>
-    <meta charset="UTF-8">
-    <title>📄 電子書價格跟蹤</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset=\"UTF-8\">
+    <title>\ud83d\udcc4 電子書價格追蹤</title>
+    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\">
 </head>
-<body class="bg-light">
-<div class="container py-4">
-    <h1 class="mb-4">📄 電子書價格跟蹤</h1>
-    <div class="mb-4">
-        <label for="authorSelect" class="form-label">下拉式選單 選擇作者：</label>
-        <select class="form-select" id="authorSelect" onchange="filterByAuthor()">
+<body class=\"bg-light\">
+<div class=\"container py-4\">
+    <h1 class=\"mb-4\">\ud83d\udcc4 電子書價格追蹤</h1>
+    <div class=\"mb-4\">
+        <label for=\"authorSelect\" class=\"form-label\">下拉式選單 選擇作者：</label>
+        <select class=\"form-select\" id=\"authorSelect\" onchange=\"filterByAuthor()\">
 """)
     for author in authors:
         value = author if author != "全部作者" else "all"
@@ -63,7 +72,7 @@ with open("docs/index.html", "w", encoding="utf-8") as f:
     f.write("""
         </select>
     </div>
-    <div id="bookCards">
+    <div id=\"bookCards\">
 """)
     for _, row in latest_df.iterrows():
         isbn = row["ISBN"]
@@ -73,17 +82,17 @@ with open("docs/index.html", "w", encoding="utf-8") as f:
         link = row["連結"]
         author = row["作者"]
         min_p = min_price.get(isbn, price)
-        chart_html = f'<iframe src="{isbn_to_plot_path.get(isbn, "")}" width="100%" height="300"></iframe>' if isbn in isbn_to_plot_path else '<p class="text-muted">目前無歷史價格資料</p>'
+        chart_html = f'<iframe src="{isbn_to_plot_path.get(isbn, "")}" width="100%" height="300" style="border:none;"></iframe>' if isbn in isbn_to_plot_path else '<p class="text-muted">目前無歷史價格資料</p>'
         f.write(f"""
-<div class="card mb-4" data-author="{author}">
-  <div class="row g-0">
-    <div class="col-md-2">
-      <img src="{image}" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+<div class=\"card mb-4 px-3\" data-author=\"{author}\">
+  <div class=\"row g-2 align-items-center\">
+    <div class=\"col-md-2 text-center\">
+      <img src=\"{image}\" class=\"img-fluid rounded-start\" alt=\"封面\" style=\"max-height: 180px; object-fit: contain;\">
     </div>
-    <div class="col-md-10">
-      <div class="card-body">
-        <h5 class="card-title"><a href="{link}" target="_blank">{title}</a></h5>
-        <p class="card-text">本日價格：NT${price}　歷史低價：NT${min_p}</p>
+    <div class=\"col-md-10\">
+      <div class=\"card-body\">
+        <h5 class=\"card-title\"><a href=\"{link}\" target=\"_blank\">{title}</a></h5>
+        <p class=\"card-text\">本日價格：NT${price}　歷史低價：NT${min_p}</p>
         {chart_html}
       </div>
     </div>
