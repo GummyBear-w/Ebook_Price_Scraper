@@ -1,718 +1,1115 @@
 
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>📚 電子書價格追蹤</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 2em;
-            background: #f9f9f9;
-        }
-        h1 {
-            margin-bottom: 0.5em;
-        }
-        select {
-            font-size: 1em;
-            padding: 0.3em;
-            margin-bottom: 1.5em;
-        }
-        .book-block {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 1em;
-            margin-bottom: 2em;
-            padding: 1em;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            align-items: start;
-        }
-        .cover {
-            width: 100%;
-            height: auto;
-            border-radius: 4px;
-            object-fit: contain;
-        }
-        .info {
-            flex: 1;
-        }
-        .chart-frame {
-            width: 100%;
-            height: 300px;
-            border: none;
-        }
-    </style>
+    <title>📄 電子書價格跟蹤</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>📚 電子書價格追蹤</h1>
-    <label>下拉式選單 選擇作者：</label><select id="authorFilter"><option value="all">全部作者</option><option value="卡繆">卡繆</option><option value="簡媜">簡媜</option><option value="赫曼．赫塞">赫曼．赫塞</option></select>
-    <div id="books">
-        
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/81e2cbee-7fb1-445c-8a9a-54f11683b376/353/569/90/False/wUn6RJK3RjCYH8YflJqYFw.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/wUn6RJK3RjCYH8YflJqYFw?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">異鄉人</a></h3>
-            <p>本日價格：NT$ 179　歷史低價：NT$ 179</p>
-            <iframe src="plot_3039571384641.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/a809baf5-4e7d-43c9-96e5-7d69fa248b50/353/569/90/False/6fn5ArUqVjSw56cshygW_Q.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/6fn5ArUqVjSw56cshygW_Q?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">德米安：徬徨少年時 (告別徬徨，堅定地做你自己。全新無刪減完整譯本，慕尼黑大學圖書館愛藏版)</a></h3>
-            <p>本日價格：NT$ 245　歷史低價：NT$ 245</p>
-            <iframe src="plot_3069869881963.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/b98f888a-ae90-4674-8796-0c691b798c30/353/569/90/False/3cIVTFd3fz6t9pp0NaJsyA.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/3cIVTFd3fz6t9pp0NaJsyA?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">徬徨少年時</a></h3>
-            <p>本日價格：NT$ 175　歷史低價：NT$ 175</p>
-            <iframe src="plot_3090000000352.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/cab95401-af95-4f91-9d80-41eee92dade2/353/569/90/False/kfbDCDZ4SD6jxk-LU1ireg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/kfbDCDZ4SD6jxk-LU1ireg?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">生命之歌</a></h3>
-            <p>本日價格：NT$ 210　歷史低價：NT$ 210</p>
-            <iframe src="plot_3090000000496.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/f601d38b-894e-436d-852c-e48f41d06a75/353/569/90/False/uWrynH7_LjCJaQT5rWrZjg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/uWrynH7_LjCJaQT5rWrZjg?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">流浪者之歌（首度德文直譯本）</a></h3>
-            <p>本日價格：NT$ 210　歷史低價：NT$ 210</p>
-            <iframe src="plot_3090000000515.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/40dde703-286a-487c-acca-3d0e177e4d0a/353/569/90/False/iRXS-e-7fzumzrZdY8d_8Q.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/iRXS-e-7fzumzrZdY8d_8Q?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">車輪下（首度德文直譯本）</a></h3>
-            <p>本日價格：NT$ 210　歷史低價：NT$ 210</p>
-            <iframe src="plot_3090000000590.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/449cd682-c515-465f-b6f3-c5b59e8310e3/353/569/90/False/VFQPtyjUrTGJSlcoqoICxg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/VFQPtyjUrTGJSlcoqoICxg?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">荒野之狼（首度德文直譯本）</a></h3>
-            <p>本日價格：NT$ 245　歷史低價：NT$ 245</p>
-            <iframe src="plot_3090000005737.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/567c8c31-ebf2-4ffb-a5b1-7e294bb27479/353/569/90/False/By8ilup3JjmH2kf5ty2N8g.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/By8ilup3JjmH2kf5ty2N8g?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">鄉愁（德文直譯本）</a></h3>
-            <p>本日價格：NT$ 196　歷史低價：NT$ 196</p>
-            <iframe src="plot_3090000006527.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/0eb8b492-c683-4d13-8a2e-40fd1872ced9/353/569/90/False/p9r2phjlUzO8q-gEc3Ysmg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/p9r2phjlUzO8q-gEc3Ysmg?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">徬徨少年時（德文直譯本）</a></h3>
-            <p>本日價格：NT$ 196　歷史低價：NT$ 196</p>
-            <iframe src="plot_3090000030292.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/24099253-90bc-4d80-8825-f6300e8b806f/353/569/90/False/gb2hSkF1KDGjqz18oam2aA.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/gb2hSkF1KDGjqz18oam2aA?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">異鄉人（卡繆版書衣）</a></h3>
-            <p>本日價格：NT$ 154　歷史低價：NT$ 154</p>
-            <iframe src="plot_3119861735450.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/56a09ae8-dac7-4eb0-9dde-b427a5a1aacb/353/569/90/False/tGTtah0cyzKVQIXzpZ7NTQ.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/tGTtah0cyzKVQIXzpZ7NTQ?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">鼠疫</a></h3>
-            <p>本日價格：NT$ 210　歷史低價：NT$ 210</p>
-            <iframe src="plot_3119861737522.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/c81844a1-3034-4867-a324-b6f0bd00c252/353/569/90/False/6g6wxeuiYjuWU71oa_5Mzg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/6g6wxeuiYjuWU71oa_5Mzg?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">荒野之狼（德文新譯本）</a></h3>
-            <p>本日價格：NT$ 294　歷史低價：NT$ 294</p>
-            <iframe src="plot_3119864771400.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/5f4ae374-cda4-4a0c-a27f-58f4eb5939e0/353/569/90/False/fUpsq8DF8Tq5Lguv3pHWuQ.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/fUpsq8DF8Tq5Lguv3pHWuQ?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">赫曼赫塞童話故事集</a></h3>
-            <p>本日價格：NT$ 250　歷史低價：NT$ 250</p>
-            <iframe src="plot_3119864773930.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/59186bf1-d059-4aeb-afcb-36b164712ef7/353/569/90/False/XRU3eRrUUD6pvlI4liPZbg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/XRU3eRrUUD6pvlI4liPZbg?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">異鄉人：最值得珍藏的名家譯本</a></h3>
-            <p>本日價格：NT$ 224　歷史低價：NT$ 224</p>
-            <iframe src="plot_3119864778287.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/8cfb868b-d1ce-428f-9dc1-8a7b0724f790/353/569/90/False/dz7TJXld6DK-tFChkyuNug.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/dz7TJXld6DK-tFChkyuNug?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">薛西弗斯的神話：卡繆的荒謬哲學</a></h3>
-            <p>本日價格：NT$ 230　歷史低價：NT$ 230</p>
-            <iframe src="plot_3120000000285.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/57e8ecec-6b0d-4586-882a-1f7699f9b494/353/569/90/False/gnS7T3tgLTS1t3eLSRBEeA.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/gnS7T3tgLTS1t3eLSRBEeA?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">快樂的死</a></h3>
-            <p>本日價格：NT$ 175　歷史低價：NT$ 175</p>
-            <iframe src="plot_3120000000639.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/5139dd71-3f40-4bbf-aaa6-752447892743/353/569/90/False/mj-jE6bxOTazX9ad0uwE7g.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/mj-jE6bxOTazX9ad0uwE7g?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">在書中發現自己的靈魂：慢讀赫塞</a></h3>
-            <p>本日價格：NT$ 250　歷史低價：NT$ 250</p>
-            <iframe src="plot_3128000000104.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/0169f08d-1636-4fe9-865e-ac9323facfa7/353/569/90/False/dnhkQv1woTKBLngzg4RbMg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/dnhkQv1woTKBLngzg4RbMg?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">反抗者（新版）</a></h3>
-            <p>本日價格：NT$ 210　歷史低價：NT$ 210</p>
-            <iframe src="plot_3150000000392.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/71d8cd60-c407-4367-bced-a36718fcf86f/353/569/90/False/t0r8j-Ym4jee3YDu96AA1w.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/t0r8j-Ym4jee3YDu96AA1w?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">薛西弗斯的神話</a></h3>
-            <p>本日價格：NT$ 166　歷史低價：NT$ 166</p>
-            <iframe src="plot_3150000000396.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/883f0dcf-e5f7-4dfe-b300-8d725a8da70d/353/569/90/False/0GQk9bH6VzyLV0Q9Faysow.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/0GQk9bH6VzyLV0Q9Faysow?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">異鄉人（2020全新名家譯本，再現卡繆字句推敲的原義）</a></h3>
-            <p>本日價格：NT$ 138　歷史低價：NT$ 138</p>
-            <iframe src="plot_3150000000617.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/9f980967-d3c1-4ac0-9f8c-f8e0ccbbcc60/353/569/90/False/B1m2jKOONjKjTMVkT5k1NQ.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/B1m2jKOONjKjTMVkT5k1NQ?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">卡繆反抗三部曲套書：《瘟疫》＋《反抗者》＋《正義者》【全新法文名家直譯，首次完整出版，親炙完整的卡繆反抗思想】</a></h3>
-            <p>本日價格：NT$ 575　歷史低價：NT$ 575</p>
-            <iframe src="plot_3150000000687.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/462128f0-194c-4f37-91e4-c9cdfbe0d7b2/353/569/90/False/iBMVIqmTtjmYjH2oJl_r8A.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/iBMVIqmTtjmYjH2oJl_r8A?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">卡繆荒謬系列四部曲套書：《異鄉人》＋《薛西弗斯的神話》＋《卡里古拉》＋《誤會》【全新法文名家直譯，首次完整出版，親炙完整的卡繆荒謬哲學】</a></h3>
-            <p>本日價格：NT$ 625　歷史低價：NT$ 625</p>
-            <iframe src="plot_3150000000693.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/76f16f12-492e-4435-b792-e97bba1721d5/353/569/90/False/Kx45Q5lYKTqv_nEYbdwV2A.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/Kx45Q5lYKTqv_nEYbdwV2A?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">卡繆荒謬與反抗系列作品全集套書：荒謬系列四部曲《異鄉人》《薛西弗斯的神話》《卡里古拉》《誤會》＋反抗系列三部曲《瘟疫》《反抗者》《正義者》【全新法文名家直譯，首次完整出版，親炙完整的卡繆荒謬哲學】</a></h3>
-            <p>本日價格：NT$ 1200　歷史低價：NT$ 1200</p>
-            <iframe src="plot_3150000000694.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/f48eb899-1243-4d56-a687-e9d45c5de9ef/353/569/90/False/pnJCPVTatTGHkaHGe4iYMw.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/pnJCPVTatTGHkaHGe4iYMw?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">中學生好享讀：諾貝爾大師短篇小說選</a></h3>
-            <p>本日價格：NT$ 225　歷史低價：NT$ 225</p>
-            <iframe src="plot_6709863201113.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/2f2b24f2-6a61-4ae2-a409-29c8eb0bc992/353/569/90/False/GYi3emouATurt5CEXNGY7A.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/GYi3emouATurt5CEXNGY7A?sId=2bbf071b-94c7-49e3-ae33-781305161ccd" target="_blank">異鄉人</a></h3>
-            <p>本日價格：NT$ 170　歷史低價：NT$ 170</p>
-            <iframe src="plot_6849862272770.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/897fa0c7-1c7f-4005-9de8-784febd6e287/353/569/90/False/ZNYK-tlfkD-IZy3hlnFJAw.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/ZNYK-tlfkD-IZy3hlnFJAw?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">德米安：彷徨少年時</a></h3>
-            <p>本日價格：NT$ 228　歷史低價：NT$ 228</p>
-            <iframe src="plot_7289867101822.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/12dc1249-e584-452a-a159-54be7be82c4d/353/569/90/False/MDkYBsM0cTm5Kq9j-44S0A.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/audiobook/MDkYBsM0cTm5Kq9j-44S0A?sId=2bbf071b-94c7-49e3-ae33-781305161ccd" target="_blank">異鄉人：荒謬三部曲，首部</a></h3>
-            <p>本日價格：NT$ 210　歷史低價：NT$ 210</p>
-            <iframe src="plot_7384000000024.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/2ebd8c79-acb7-430a-abd8-3998815f26dd/353/569/90/False/5P5w8osOvzauH183YElyCw.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/audiobook/5P5w8osOvzauH183YElyCw?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">悉達多：一首印度的詩（流浪者之歌）</a></h3>
-            <p>本日價格：NT$ 210　歷史低價：NT$ 210</p>
-            <iframe src="plot_7384000000026.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/e921900f-2bfe-42d8-8547-198c1b3b42b1/353/569/90/False/pO0YjhmJajyGRrdkzlKsnA.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/audiobook/pO0YjhmJajyGRrdkzlKsnA?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">德米安：埃米爾．辛克萊年少時的故事（徬徨少年時）</a></h3>
-            <p>本日價格：NT$ 210　歷史低價：NT$ 210</p>
-            <iframe src="plot_7384000000027.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/8d8c685d-f3c5-4e43-a07c-4a7a91f5ad22/353/569/90/False/RBqeU8INXTCG7D8npjR0bw.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/RBqeU8INXTCG7D8npjR0bw?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">我為你灑下月光</a></h3>
-            <p>本日價格：NT$ 336　歷史低價：NT$ 336</p>
-            <iframe src="plot_7390863872337.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/4c769dfc-5feb-45bb-bad9-d22ff6fe4425/353/569/90/False/3-XKV53DSzqry1rJm_LJEA.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/3-XKV53DSzqry1rJm_LJEA?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">紅嬰仔：一個女人和她的育嬰史</a></h3>
-            <p>本日價格：NT$ 252　歷史低價：NT$ 252</p>
-            <iframe src="plot_7390863873068.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/af00ba7f-99c1-44ae-b3d3-81c4e6e37430/353/569/90/False/y2QggT-GWz28HjuY_ABx1w.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/y2QggT-GWz28HjuY_ABx1w?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">天涯海角──福爾摩沙抒情誌</a></h3>
-            <p>本日價格：NT$ 245　歷史低價：NT$ 245</p>
-            <iframe src="plot_7390863873471.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/137d5050-a414-4644-a453-8236a3c7338c/353/569/90/False/SS3f6q_OmzG6ixjEoQQSBw.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/SS3f6q_OmzG6ixjEoQQSBw?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">十種寂寞</a></h3>
-            <p>本日價格：NT$ 252　歷史低價：NT$ 252</p>
-            <iframe src="plot_7390863873877.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/03cd221a-bef1-420d-96fa-a1ff5f2ec5f8/353/569/90/False/5xrS1tW6YT6YFfX6xajasQ.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/5xrS1tW6YT6YFfX6xajasQ?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">吃朋友</a></h3>
-            <p>本日價格：NT$ 245　歷史低價：NT$ 245</p>
-            <iframe src="plot_7390866631382.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/912cffcc-12b7-4881-820d-605be5c0f456/353/569/90/False/Opeot0Gw9zeKOcdaOXIiCg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/Opeot0Gw9zeKOcdaOXIiCg?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">老師的十二樣見面禮</a></h3>
-            <p>本日價格：NT$ 224　歷史低價：NT$ 224</p>
-            <iframe src="plot_7390866873232.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/1000dae4-0e54-4613-994a-2ca68f225aaf/353/569/90/False/mBrCwjCDbT-OmxW_MxQCPg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/audiobook/mBrCwjCDbT-OmxW_MxQCPg?sId=2bbf071b-94c7-49e3-ae33-781305161ccd" target="_blank">第一人：《異鄉人》存在主義大師的最後遺作！沒讀過《第一人》，就無法了解真正的卡繆！</a></h3>
-            <p>本日價格：NT$ 360　歷史低價：NT$ 360</p>
-            <iframe src="plot_7435000003050.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/dbaffb64-2df7-46df-9836-4b43eb375d74/353/569/90/False/SSmAUWRnWD-200t2EoH_qQ.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/SSmAUWRnWD-200t2EoH_qQ?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">流浪者之歌</a></h3>
-            <p>本日價格：NT$ 245　歷史低價：NT$ 245</p>
-            <iframe src="plot_9786263744417.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/3bb495e7-b3a7-490f-be56-c4e3d0755850/353/569/90/False/8qvh-uvBNjeQ5sV5LtVHdw.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/8qvh-uvBNjeQ5sV5LtVHdw?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">荒野之狼</a></h3>
-            <p>本日價格：NT$ 315　歷史低價：NT$ 315</p>
-            <iframe src="plot_9786263966987.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/3f321736-62ab-46cb-ae65-dabe29f7eea4/353/569/90/False/BZkTJbpWnTWsH4_ozeT9vA.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/BZkTJbpWnTWsH4_ozeT9vA?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">流浪者之歌／悉達多</a></h3>
-            <p>本日價格：NT$ 252　歷史低價：NT$ 252</p>
-            <iframe src="plot_9786267095010.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/228a6362-9e74-450c-806f-26d0291b0115/353/569/90/False/bUv8_ShWSDyzoufG54r66g.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/bUv8_ShWSDyzoufG54r66g?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">卡里古拉【1957年諾貝爾文學獎得主描摹荒謬的經典代表作</a></h3>
-            <p>本日價格：NT$ 166　歷史低價：NT$ 166</p>
-            <iframe src="plot_9786267118108.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/f35af051-fd52-4e22-a2df-d19abd3abf6e/353/569/90/False/XznH9zQdijG-RQoi9MTYng.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/XznH9zQdijG-RQoi9MTYng?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">誤會【1957年諾貝爾文學獎得主面對自我放逐之旅的核心之作】</a></h3>
-            <p>本日價格：NT$ 155　歷史低價：NT$ 155</p>
-            <iframe src="plot_9786267118139.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/6ccfbf88-73ae-4691-b256-38387994ae56/353/569/90/False/7fFjSyTP9zKPTx3GcPFpfw.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/7fFjSyTP9zKPTx3GcPFpfw?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">薛西弗斯的神話：點燃希望的哲學頌歌，法國七星文庫權威譯本【傅雷翻譯獎典藏版】</a></h3>
-            <p>本日價格：NT$ 266　歷史低價：NT$ 266</p>
-            <iframe src="plot_9786267596456.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/f7453d28-8edd-4d0b-87ae-3f947835f381/353/569/90/False/jHi5IlslGTmTLqpPkwxScQ.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/jHi5IlslGTmTLqpPkwxScQ?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">園圃之歌：諾貝爾文學獎大師赫曼．赫塞的自然哲思與手繪詩畫</a></h3>
-            <p>本日價格：NT$ 266　歷史低價：NT$ 266</p>
-            <iframe src="plot_9786269638079.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/921c4663-8c49-4f8f-a61f-e24755dbae11/353/569/90/False/JNfPTDEjDz-tAMfp3Egokg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/JNfPTDEjDz-tAMfp3Egokg?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">流浪者之歌【感動解讀版】</a></h3>
-            <p>本日價格：NT$ 400　歷史低價：NT$ 400</p>
-            <iframe src="plot_9786269936137.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/9291fc65-996d-4a27-83f4-a141c345d8cb/353/569/90/False/QQT3HgwFsT2xefv4IRMF9w.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/QQT3HgwFsT2xefv4IRMF9w?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">正義者（首次出版，法文直譯名家譯本，卡繆展現對正義與反抗的考驗）</a></h3>
-            <p>本日價格：NT$ 155　歷史低價：NT$ 155</p>
-            <iframe src="plot_9789860777161.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/9618975f-d9f0-47af-bd43-571387f8a06a/353/569/90/False/wJ6ORaWSDj60GIzsDTf9Zg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/wJ6ORaWSDj60GIzsDTf9Zg?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">瘟疫（2021最新名家譯本，卡繆對疫情下被禁錮人心的鼓舞）</a></h3>
-            <p>本日價格：NT$ 210　歷史低價：NT$ 210</p>
-            <iframe src="plot_9789860777192.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/8d4f032e-dd57-4b50-a7d8-07f8e494bce5/353/569/90/False/sQ5ce_0gtz-yiFpE7SxWag.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/sQ5ce_0gtz-yiFpE7SxWag?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">瘟疫</a></h3>
-            <p>本日價格：NT$ 210　歷史低價：NT$ 210</p>
-            <iframe src="plot_9789861785516.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/a910e55d-8df0-43d3-8ef2-df7dc21d51ba/353/569/90/False/t1OO6Q03qjuX0wfMsaUVPg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/audiobook/t1OO6Q03qjuX0wfMsaUVPg?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">異鄉人（卡繆經典暢銷作․中文版有聲書首度上市）</a></h3>
-            <p>本日價格：NT$ 220　歷史低價：NT$ 220</p>
-            <iframe src="plot_9789863449263.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/ba766fe2-65df-4d69-83bc-798bf2340c10/353/569/90/False/AMe0qKS-yzinEfp_ItutUg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/audiobook/AMe0qKS-yzinEfp_ItutUg?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">鼠疫（卡繆經典暢銷作․中文版有聲書首度上市）</a></h3>
-            <p>本日價格：NT$ 300　歷史低價：NT$ 300</p>
-            <iframe src="plot_9789863449270.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/73163054-0990-4413-b92d-a3d20f20ebaa/353/569/90/False/DBqadeV-gT-bmmVuqDItJg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/DBqadeV-gT-bmmVuqDItJg?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">女兒紅</a></h3>
-            <p>本日價格：NT$ 196　歷史低價：NT$ 196</p>
-            <iframe src="plot_9789863874096.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/5f1ba02d-68c9-4aa5-85ab-824c904439e9/353/569/90/False/RVGALpaZsjaTbCo1SdZXqw.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/RVGALpaZsjaTbCo1SdZXqw?sId=2bbf071b-94c7-49e3-ae33-781305161ccd" target="_blank">放逐與王國</a></h3>
-            <p>本日價格：NT$ 210　歷史低價：NT$ 210</p>
-            <iframe src="plot_9789863874133.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/df1c79f2-8ad2-4ed8-9f37-293c81359dd8/353/569/90/False/p_nX7y-6_D6gGQiQ7O__sw.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/p_nX7y-6_D6gGQiQ7O__sw?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">夢遊書</a></h3>
-            <p>本日價格：NT$ 196　歷史低價：NT$ 196</p>
-            <iframe src="plot_9789863874546.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/0ce65bd8-31e7-48ec-b6c2-f3b4da8f4cb7/353/569/90/False/_jcUd4QT3T6w0ZguwcDvlg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/_jcUd4QT3T6w0ZguwcDvlg?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">胭脂盆地</a></h3>
-            <p>本日價格：NT$ 196　歷史低價：NT$ 196</p>
-            <iframe src="plot_9789863874553.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/a21ea0b7-2449-4d16-b4db-1aa18c1993f3/353/569/90/False/JR_gAXmObD6EROWQrNPmjw.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/JR_gAXmObD6EROWQrNPmjw?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">只緣身在此山中</a></h3>
-            <p>本日價格：NT$ 224　歷史低價：NT$ 224</p>
-            <iframe src="plot_9789863874911.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/1dc984df-000f-4cfb-86bf-d71ead052b02/353/569/90/False/yifYBw_kEz-sjWx9O6wmTg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/yifYBw_kEz-sjWx9O6wmTg?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">月娘照眠牀</a></h3>
-            <p>本日價格：NT$ 220　歷史低價：NT$ 220</p>
-            <iframe src="plot_9789863875314.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/dcfdfd36-7d3d-4201-89ab-681303731c15/353/569/90/False/tR63QOkIkjSZNYP1XN8qJQ.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/tR63QOkIkjSZNYP1XN8qJQ?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">好一座浮島</a></h3>
-            <p>本日價格：NT$ 210　歷史低價：NT$ 210</p>
-            <iframe src="plot_9789863875666.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/df67a2d3-dab3-4ea6-bdd2-0f0e2b62a151/353/569/90/False/lRjcIazDljKdQZof57Hd9A.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/lRjcIazDljKdQZof57Hd9A?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">微暈的樹林</a></h3>
-            <p>本日價格：NT$ 210　歷史低價：NT$ 210</p>
-            <iframe src="plot_9789863875857.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/18d8f7d3-ad8d-4473-b1b7-aba2ada08383/353/569/90/False/tyYjDkeqiza61CrkeCJu7w.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/tyYjDkeqiza61CrkeCJu7w?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">誰在銀閃閃的地方，等你（增訂版）</a></h3>
-            <p>本日價格：NT$ 392　歷史低價：NT$ 392</p>
-            <iframe src="plot_9789863876021.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/5ddd0b2a-a9d1-403d-92c3-60f91baba3c6/353/569/90/False/7r6In9z6kTuCg3twvvZA2g.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/7r6In9z6kTuCg3twvvZA2g?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">老師的十二樣見面禮（增訂版）</a></h3>
-            <p>本日價格：NT$ 329　歷史低價：NT$ 329</p>
-            <iframe src="plot_9789863876236.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/97241a9a-8187-4195-a573-9a921c04b9cc/353/569/90/False/wieReZ4jqT2vpPAPLsLmkA.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/wieReZ4jqT2vpPAPLsLmkA?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">舊情復燃</a></h3>
-            <p>本日價格：NT$ 220　歷史低價：NT$ 220</p>
-            <iframe src="plot_9789863876380.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/84781262-e7bd-4d10-a3c7-d19910fafa73/353/569/90/False/5iBW0pa_Wj2IztG5D0yKyw.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/5iBW0pa_Wj2IztG5D0yKyw?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">下午茶</a></h3>
-            <p>本日價格：NT$ 160　歷史低價：NT$ 160</p>
-            <iframe src="plot_9789863876946.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/76e8fe19-e84d-4b62-9707-03393a023486/353/569/90/False/mMg1YwJL9TemPTAVwHZbvw.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/mMg1YwJL9TemPTAVwHZbvw?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">密密語</a></h3>
-            <p>本日價格：NT$ 280　歷史低價：NT$ 280</p>
-            <iframe src="plot_9789863876953.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/5dc05880-531e-4ce8-9a89-99be05f5d02b/353/569/90/False/1Cgc_XKbQj6NkWrPuaKd2g.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/1Cgc_XKbQj6NkWrPuaKd2g?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">與歲月同等心跳</a></h3>
-            <p>本日價格：NT$ 210　歷史低價：NT$ 210</p>
-            <iframe src="plot_9789863877479.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/ba7b0973-6125-415b-91a8-f4910ba8f09b/353/569/90/False/BEgyL0ETLzSJLhvVE5yKmQ.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/BEgyL0ETLzSJLhvVE5yKmQ?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">旅人之歌——神遊山水詩</a></h3>
-            <p>本日價格：NT$ 210　歷史低價：NT$ 210</p>
-            <iframe src="plot_9789863877516.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="簡媜">
-        <img src="https://cdn.kobo.com/book-images/0c528bc8-18ea-46e3-acf0-f4c80125be95/353/569/90/False/Yyl9S4wUuDu8rltsfwH3UQ.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/Yyl9S4wUuDu8rltsfwH3UQ?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">一個人漫遊，古典森林</a></h3>
-            <p>本日價格：NT$ 315　歷史低價：NT$ 315</p>
-            <iframe src="plot_9789863877745.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/e52679bc-171d-45f8-bf8a-8a159a9891ed/353/569/90/False/UHZLCrSJATqst2fZDCkzBA.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/UHZLCrSJATqst2fZDCkzBA?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">悠遊之歌（三版）</a></h3>
-            <p>本日價格：NT$ 175　歷史低價：NT$ 175</p>
-            <iframe src="plot_9789864023936.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/827cfb45-6d4c-43cb-866a-eb45ca8c20c7/353/569/90/False/8X4BYN4ZszavG3vs7B0Jdg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/8X4BYN4ZszavG3vs7B0Jdg?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">悉達多【獨家收錄保羅．科爾賀專文導讀、林懷民繆思分享】：一首印度的詩（流浪者之歌）</a></h3>
-            <p>本日價格：NT$ 196　歷史低價：NT$ 196</p>
-            <iframe src="plot_9789864895397.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="赫曼．赫塞">
-        <img src="https://cdn.kobo.com/book-images/ae0cd56f-8ec4-4e2d-bc97-29ea34073182/353/569/90/False/ib-jIoEV2Dqm0I1tAc6TWQ.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/ib-jIoEV2Dqm0I1tAc6TWQ?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">德米安【獨家收錄詹姆斯・法蘭科專文導讀】：埃米爾．辛克萊年少時的故事（徬徨少年時）</a></h3>
-            <p>本日價格：NT$ 210　歷史低價：NT$ 210</p>
-            <iframe src="plot_9789864895403.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/f4d068a2-498d-4817-97dd-d7492dc32b10/353/569/90/False/K9cd87y5oDGaSXDvYBOiAg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/K9cd87y5oDGaSXDvYBOiAg?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">鼠疫【全新名家譯本】（特別收錄哲學解析〈一部存在主義小說的後現代閱讀〉）</a></h3>
-            <p>本日價格：NT$ 266　歷史低價：NT$ 266</p>
-            <iframe src="plot_9789864895434.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/a71e071c-2ddd-47b0-ba0d-0ad67a3261c3/353/569/90/False/VQ2InesBOjKI-Xv96viLqA.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/VQ2InesBOjKI-Xv96viLqA?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">異鄉人【獨家收錄沙特評論・2022全新名家譯本】</a></h3>
-            <p>本日價格：NT$ 196　歷史低價：NT$ 196</p>
-            <iframe src="plot_9789864896073.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/edbaf1b0-60cf-4781-90e1-dcb3d6358348/353/569/90/False/XSi3S6nkVz2SFyXwXYLq1g.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/XSi3S6nkVz2SFyXwXYLq1g?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">瘟疫（名家經典新譯）</a></h3>
-            <p>本日價格：NT$ 228　歷史低價：NT$ 228</p>
-            <iframe src="plot_9789865482473.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    <div class="book-block" data-author="卡繆">
-        <img src="https://cdn.kobo.com/book-images/033f901a-cea5-456e-9a5c-534f67c7dd33/353/569/90/False/SmaLhyIaRTOPTVVkw9jskg.jpg" alt="封面" class="cover">
-        <div class="info">
-            <h3><a href="https://www.kobo.com/tw/zh/ebook/SmaLhyIaRTOPTVVkw9jskg?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">放逐與王國：卡繆短篇小說</a></h3>
-            <p>本日價格：NT$ 260　歷史低價：NT$ 260</p>
-            <iframe src="plot_9789865482541.html" class="chart-frame"></iframe>
-        </div>
-    </div>
-    
-    </div>
+<body class="bg-light">
+<div class="container py-4">
+    <h1 class="mb-4">📄 電子書價格跟蹤</h1>
+    <div class="mb-4">
+        <label for="authorSelect" class="form-label">下拉式選單 選擇作者：</label>
+        <select class="form-select" id="authorSelect" onchange="filterByAuthor()">
+<option value="all">全部作者</option>
+<option value="卡繆">卡繆</option>
+<option value="簡媜">簡媜</option>
+<option value="赫曼．赫塞">赫曼．赫塞</option>
 
-    <script>
-        const selector = document.getElementById("authorFilter");
-        selector.addEventListener("change", function() {
-            const selected = this.value;
-            document.querySelectorAll(".book-block").forEach(block => {
-                if (selected === "all" || block.dataset.author === selected) {
-                    block.style.display = "grid";
-                } else {
-                    block.style.display = "none";
-                }
-            });
-        });
-    </script>
+        </select>
+    </div>
+    <div id="bookCards">
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/24099253-90bc-4d80-8825-f6300e8b806f/353/569/90/False/gb2hSkF1KDGjqz18oam2aA.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/gb2hSkF1KDGjqz18oam2aA?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">異鄉人（卡繆版書衣）</a></h5>
+        <p class="card-text">本日價格：NT$154　歷史低價：NT$154</p>
+        <iframe src="plot_3119861735450.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/462128f0-194c-4f37-91e4-c9cdfbe0d7b2/353/569/90/False/iBMVIqmTtjmYjH2oJl_r8A.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/iBMVIqmTtjmYjH2oJl_r8A?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">卡繆荒謬系列四部曲套書：《異鄉人》＋《薛西弗斯的神話》＋《卡里古拉》＋《誤會》【全新法文名家直譯，首次完整出版，親炙完整的卡繆荒謬哲學】</a></h5>
+        <p class="card-text">本日價格：NT$625　歷史低價：NT$625</p>
+        <iframe src="plot_3150000000693.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/883f0dcf-e5f7-4dfe-b300-8d725a8da70d/353/569/90/False/0GQk9bH6VzyLV0Q9Faysow.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/0GQk9bH6VzyLV0Q9Faysow?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">異鄉人（2020全新名家譯本，再現卡繆字句推敲的原義）</a></h5>
+        <p class="card-text">本日價格：NT$138　歷史低價：NT$138</p>
+        <iframe src="plot_3150000000617.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/9618975f-d9f0-47af-bd43-571387f8a06a/353/569/90/False/wJ6ORaWSDj60GIzsDTf9Zg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/wJ6ORaWSDj60GIzsDTf9Zg?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">瘟疫（2021最新名家譯本，卡繆對疫情下被禁錮人心的鼓舞）</a></h5>
+        <p class="card-text">本日價格：NT$210　歷史低價：NT$210</p>
+        <iframe src="plot_9789860777192.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/8cfb868b-d1ce-428f-9dc1-8a7b0724f790/353/569/90/False/dz7TJXld6DK-tFChkyuNug.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/dz7TJXld6DK-tFChkyuNug?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">薛西弗斯的神話：卡繆的荒謬哲學</a></h5>
+        <p class="card-text">本日價格：NT$230　歷史低價：NT$230</p>
+        <iframe src="plot_3120000000285.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/76f16f12-492e-4435-b792-e97bba1721d5/353/569/90/False/Kx45Q5lYKTqv_nEYbdwV2A.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/Kx45Q5lYKTqv_nEYbdwV2A?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">卡繆荒謬與反抗系列作品全集套書：荒謬系列四部曲《異鄉人》《薛西弗斯的神話》《卡里古拉》《誤會》＋反抗系列三部曲《瘟疫》《反抗者》《正義者》【全新法文名家直譯，首次完整出版，親炙完整的卡繆荒謬哲學】</a></h5>
+        <p class="card-text">本日價格：NT$1200　歷史低價：NT$1200</p>
+        <iframe src="plot_3150000000694.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/9291fc65-996d-4a27-83f4-a141c345d8cb/353/569/90/False/QQT3HgwFsT2xefv4IRMF9w.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/QQT3HgwFsT2xefv4IRMF9w?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">正義者（首次出版，法文直譯名家譯本，卡繆展現對正義與反抗的考驗）</a></h5>
+        <p class="card-text">本日價格：NT$155　歷史低價：NT$155</p>
+        <iframe src="plot_9789860777161.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/9f980967-d3c1-4ac0-9f8c-f8e0ccbbcc60/353/569/90/False/B1m2jKOONjKjTMVkT5k1NQ.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/B1m2jKOONjKjTMVkT5k1NQ?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">卡繆反抗三部曲套書：《瘟疫》＋《反抗者》＋《正義者》【全新法文名家直譯，首次完整出版，親炙完整的卡繆反抗思想】</a></h5>
+        <p class="card-text">本日價格：NT$575　歷史低價：NT$575</p>
+        <iframe src="plot_3150000000687.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/71d8cd60-c407-4367-bced-a36718fcf86f/353/569/90/False/t0r8j-Ym4jee3YDu96AA1w.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/t0r8j-Ym4jee3YDu96AA1w?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">薛西弗斯的神話</a></h5>
+        <p class="card-text">本日價格：NT$166　歷史低價：NT$166</p>
+        <iframe src="plot_3150000000396.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/56a09ae8-dac7-4eb0-9dde-b427a5a1aacb/353/569/90/False/tGTtah0cyzKVQIXzpZ7NTQ.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/tGTtah0cyzKVQIXzpZ7NTQ?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">鼠疫</a></h5>
+        <p class="card-text">本日價格：NT$210　歷史低價：NT$210</p>
+        <iframe src="plot_3119861737522.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/57e8ecec-6b0d-4586-882a-1f7699f9b494/353/569/90/False/gnS7T3tgLTS1t3eLSRBEeA.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/gnS7T3tgLTS1t3eLSRBEeA?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">快樂的死</a></h5>
+        <p class="card-text">本日價格：NT$175　歷史低價：NT$175</p>
+        <iframe src="plot_3120000000639.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/6ccfbf88-73ae-4691-b256-38387994ae56/353/569/90/False/7fFjSyTP9zKPTx3GcPFpfw.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/7fFjSyTP9zKPTx3GcPFpfw?sId=c08dac8b-6168-4331-be88-c056e60cbd94" target="_blank">薛西弗斯的神話：點燃希望的哲學頌歌，法國七星文庫權威譯本【傅雷翻譯獎典藏版】</a></h5>
+        <p class="card-text">本日價格：NT$266　歷史低價：NT$266</p>
+        <iframe src="plot_9786267596456.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/f35af051-fd52-4e22-a2df-d19abd3abf6e/353/569/90/False/XznH9zQdijG-RQoi9MTYng.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/XznH9zQdijG-RQoi9MTYng?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">誤會【1957年諾貝爾文學獎得主面對自我放逐之旅的核心之作】</a></h5>
+        <p class="card-text">本日價格：NT$155　歷史低價：NT$155</p>
+        <iframe src="plot_9786267118139.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/228a6362-9e74-450c-806f-26d0291b0115/353/569/90/False/bUv8_ShWSDyzoufG54r66g.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/bUv8_ShWSDyzoufG54r66g?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">卡里古拉【1957年諾貝爾文學獎得主描摹荒謬的經典代表作</a></h5>
+        <p class="card-text">本日價格：NT$166　歷史低價：NT$166</p>
+        <iframe src="plot_9786267118108.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/033f901a-cea5-456e-9a5c-534f67c7dd33/353/569/90/False/SmaLhyIaRTOPTVVkw9jskg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/SmaLhyIaRTOPTVVkw9jskg?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">放逐與王國：卡繆短篇小說</a></h5>
+        <p class="card-text">本日價格：NT$260　歷史低價：NT$260</p>
+        <iframe src="plot_9789865482541.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/81e2cbee-7fb1-445c-8a9a-54f11683b376/353/569/90/False/wUn6RJK3RjCYH8YflJqYFw.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/wUn6RJK3RjCYH8YflJqYFw?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">異鄉人</a></h5>
+        <p class="card-text">本日價格：NT$179　歷史低價：NT$179</p>
+        <iframe src="plot_3039571384641.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/a910e55d-8df0-43d3-8ef2-df7dc21d51ba/353/569/90/False/t1OO6Q03qjuX0wfMsaUVPg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/audiobook/t1OO6Q03qjuX0wfMsaUVPg?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">異鄉人（卡繆經典暢銷作․中文版有聲書首度上市）</a></h5>
+        <p class="card-text">本日價格：NT$220　歷史低價：NT$220</p>
+        <iframe src="plot_9789863449263.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/f4d068a2-498d-4817-97dd-d7492dc32b10/353/569/90/False/K9cd87y5oDGaSXDvYBOiAg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/K9cd87y5oDGaSXDvYBOiAg?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">鼠疫【全新名家譯本】（特別收錄哲學解析〈一部存在主義小說的後現代閱讀〉）</a></h5>
+        <p class="card-text">本日價格：NT$266　歷史低價：NT$266</p>
+        <iframe src="plot_9789864895434.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/0169f08d-1636-4fe9-865e-ac9323facfa7/353/569/90/False/dnhkQv1woTKBLngzg4RbMg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/dnhkQv1woTKBLngzg4RbMg?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">反抗者（新版）</a></h5>
+        <p class="card-text">本日價格：NT$210　歷史低價：NT$210</p>
+        <iframe src="plot_3150000000392.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/edbaf1b0-60cf-4781-90e1-dcb3d6358348/353/569/90/False/XSi3S6nkVz2SFyXwXYLq1g.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/XSi3S6nkVz2SFyXwXYLq1g?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">瘟疫（名家經典新譯）</a></h5>
+        <p class="card-text">本日價格：NT$228　歷史低價：NT$228</p>
+        <iframe src="plot_9789865482473.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/a71e071c-2ddd-47b0-ba0d-0ad67a3261c3/353/569/90/False/VQ2InesBOjKI-Xv96viLqA.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/VQ2InesBOjKI-Xv96viLqA?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">異鄉人【獨家收錄沙特評論・2022全新名家譯本】</a></h5>
+        <p class="card-text">本日價格：NT$196　歷史低價：NT$196</p>
+        <iframe src="plot_9789864896073.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/59186bf1-d059-4aeb-afcb-36b164712ef7/353/569/90/False/XRU3eRrUUD6pvlI4liPZbg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/XRU3eRrUUD6pvlI4liPZbg?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">異鄉人：最值得珍藏的名家譯本</a></h5>
+        <p class="card-text">本日價格：NT$224　歷史低價：NT$224</p>
+        <iframe src="plot_3119864778287.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/8d4f032e-dd57-4b50-a7d8-07f8e494bce5/353/569/90/False/sQ5ce_0gtz-yiFpE7SxWag.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/sQ5ce_0gtz-yiFpE7SxWag?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">瘟疫</a></h5>
+        <p class="card-text">本日價格：NT$210　歷史低價：NT$210</p>
+        <iframe src="plot_9789861785516.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/ba766fe2-65df-4d69-83bc-798bf2340c10/353/569/90/False/AMe0qKS-yzinEfp_ItutUg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/audiobook/AMe0qKS-yzinEfp_ItutUg?sId=1a70dd6b-4d51-4335-bc40-f7ee488501a2" target="_blank">鼠疫（卡繆經典暢銷作․中文版有聲書首度上市）</a></h5>
+        <p class="card-text">本日價格：NT$300　歷史低價：NT$300</p>
+        <iframe src="plot_9789863449270.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/5f1ba02d-68c9-4aa5-85ab-824c904439e9/353/569/90/False/RVGALpaZsjaTbCo1SdZXqw.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/RVGALpaZsjaTbCo1SdZXqw?sId=2bbf071b-94c7-49e3-ae33-781305161ccd" target="_blank">放逐與王國</a></h5>
+        <p class="card-text">本日價格：NT$210　歷史低價：NT$210</p>
+        <iframe src="plot_9789863874133.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/2f2b24f2-6a61-4ae2-a409-29c8eb0bc992/353/569/90/False/GYi3emouATurt5CEXNGY7A.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/GYi3emouATurt5CEXNGY7A?sId=2bbf071b-94c7-49e3-ae33-781305161ccd" target="_blank">異鄉人</a></h5>
+        <p class="card-text">本日價格：NT$170　歷史低價：NT$170</p>
+        <iframe src="plot_6849862272770.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/1000dae4-0e54-4613-994a-2ca68f225aaf/353/569/90/False/mBrCwjCDbT-OmxW_MxQCPg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/audiobook/mBrCwjCDbT-OmxW_MxQCPg?sId=2bbf071b-94c7-49e3-ae33-781305161ccd" target="_blank">第一人：《異鄉人》存在主義大師的最後遺作！沒讀過《第一人》，就無法了解真正的卡繆！</a></h5>
+        <p class="card-text">本日價格：NT$360　歷史低價：NT$360</p>
+        <iframe src="plot_7435000003050.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="卡繆">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/12dc1249-e584-452a-a159-54be7be82c4d/353/569/90/False/MDkYBsM0cTm5Kq9j-44S0A.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/audiobook/MDkYBsM0cTm5Kq9j-44S0A?sId=2bbf071b-94c7-49e3-ae33-781305161ccd" target="_blank">異鄉人：荒謬三部曲，首部</a></h5>
+        <p class="card-text">本日價格：NT$210　歷史低價：NT$210</p>
+        <iframe src="plot_7384000000024.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/137d5050-a414-4644-a453-8236a3c7338c/353/569/90/False/SS3f6q_OmzG6ixjEoQQSBw.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/SS3f6q_OmzG6ixjEoQQSBw?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">十種寂寞</a></h5>
+        <p class="card-text">本日價格：NT$252　歷史低價：NT$252</p>
+        <iframe src="plot_7390863873877.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/8d8c685d-f3c5-4e43-a07c-4a7a91f5ad22/353/569/90/False/RBqeU8INXTCG7D8npjR0bw.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/RBqeU8INXTCG7D8npjR0bw?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">我為你灑下月光</a></h5>
+        <p class="card-text">本日價格：NT$336　歷史低價：NT$336</p>
+        <iframe src="plot_7390863872337.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/4c769dfc-5feb-45bb-bad9-d22ff6fe4425/353/569/90/False/3-XKV53DSzqry1rJm_LJEA.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/3-XKV53DSzqry1rJm_LJEA?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">紅嬰仔：一個女人和她的育嬰史</a></h5>
+        <p class="card-text">本日價格：NT$252　歷史低價：NT$252</p>
+        <iframe src="plot_7390863873068.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/df1c79f2-8ad2-4ed8-9f37-293c81359dd8/353/569/90/False/p_nX7y-6_D6gGQiQ7O__sw.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/p_nX7y-6_D6gGQiQ7O__sw?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">夢遊書</a></h5>
+        <p class="card-text">本日價格：NT$196　歷史低價：NT$196</p>
+        <iframe src="plot_9789863874546.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/73163054-0990-4413-b92d-a3d20f20ebaa/353/569/90/False/DBqadeV-gT-bmmVuqDItJg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/DBqadeV-gT-bmmVuqDItJg?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">女兒紅</a></h5>
+        <p class="card-text">本日價格：NT$196　歷史低價：NT$196</p>
+        <iframe src="plot_9789863874096.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/912cffcc-12b7-4881-820d-605be5c0f456/353/569/90/False/Opeot0Gw9zeKOcdaOXIiCg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/Opeot0Gw9zeKOcdaOXIiCg?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">老師的十二樣見面禮</a></h5>
+        <p class="card-text">本日價格：NT$224　歷史低價：NT$224</p>
+        <iframe src="plot_7390866873232.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/5dc05880-531e-4ce8-9a89-99be05f5d02b/353/569/90/False/1Cgc_XKbQj6NkWrPuaKd2g.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/1Cgc_XKbQj6NkWrPuaKd2g?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">與歲月同等心跳</a></h5>
+        <p class="card-text">本日價格：NT$210　歷史低價：NT$210</p>
+        <iframe src="plot_9789863877479.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/18d8f7d3-ad8d-4473-b1b7-aba2ada08383/353/569/90/False/tyYjDkeqiza61CrkeCJu7w.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/tyYjDkeqiza61CrkeCJu7w?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">誰在銀閃閃的地方，等你（增訂版）</a></h5>
+        <p class="card-text">本日價格：NT$392　歷史低價：NT$392</p>
+        <iframe src="plot_9789863876021.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/0c528bc8-18ea-46e3-acf0-f4c80125be95/353/569/90/False/Yyl9S4wUuDu8rltsfwH3UQ.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/Yyl9S4wUuDu8rltsfwH3UQ?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">一個人漫遊，古典森林</a></h5>
+        <p class="card-text">本日價格：NT$315　歷史低價：NT$315</p>
+        <iframe src="plot_9789863877745.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/0ce65bd8-31e7-48ec-b6c2-f3b4da8f4cb7/353/569/90/False/_jcUd4QT3T6w0ZguwcDvlg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/_jcUd4QT3T6w0ZguwcDvlg?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">胭脂盆地</a></h5>
+        <p class="card-text">本日價格：NT$196　歷史低價：NT$196</p>
+        <iframe src="plot_9789863874553.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/ba7b0973-6125-415b-91a8-f4910ba8f09b/353/569/90/False/BEgyL0ETLzSJLhvVE5yKmQ.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/BEgyL0ETLzSJLhvVE5yKmQ?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">旅人之歌——神遊山水詩</a></h5>
+        <p class="card-text">本日價格：NT$210　歷史低價：NT$210</p>
+        <iframe src="plot_9789863877516.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/5ddd0b2a-a9d1-403d-92c3-60f91baba3c6/353/569/90/False/7r6In9z6kTuCg3twvvZA2g.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/7r6In9z6kTuCg3twvvZA2g?sId=72f706ac-887b-4514-a728-015a78b8b12a" target="_blank">老師的十二樣見面禮（增訂版）</a></h5>
+        <p class="card-text">本日價格：NT$329　歷史低價：NT$329</p>
+        <iframe src="plot_9789863876236.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/03cd221a-bef1-420d-96fa-a1ff5f2ec5f8/353/569/90/False/5xrS1tW6YT6YFfX6xajasQ.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/5xrS1tW6YT6YFfX6xajasQ?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">吃朋友</a></h5>
+        <p class="card-text">本日價格：NT$245　歷史低價：NT$245</p>
+        <iframe src="plot_7390866631382.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/84781262-e7bd-4d10-a3c7-d19910fafa73/353/569/90/False/5iBW0pa_Wj2IztG5D0yKyw.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/5iBW0pa_Wj2IztG5D0yKyw?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">下午茶</a></h5>
+        <p class="card-text">本日價格：NT$160　歷史低價：NT$160</p>
+        <iframe src="plot_9789863876946.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/76e8fe19-e84d-4b62-9707-03393a023486/353/569/90/False/mMg1YwJL9TemPTAVwHZbvw.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/mMg1YwJL9TemPTAVwHZbvw?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">密密語</a></h5>
+        <p class="card-text">本日價格：NT$280　歷史低價：NT$280</p>
+        <iframe src="plot_9789863876953.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/df67a2d3-dab3-4ea6-bdd2-0f0e2b62a151/353/569/90/False/lRjcIazDljKdQZof57Hd9A.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/lRjcIazDljKdQZof57Hd9A?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">微暈的樹林</a></h5>
+        <p class="card-text">本日價格：NT$210　歷史低價：NT$210</p>
+        <iframe src="plot_9789863875857.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/af00ba7f-99c1-44ae-b3d3-81c4e6e37430/353/569/90/False/y2QggT-GWz28HjuY_ABx1w.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/y2QggT-GWz28HjuY_ABx1w?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">天涯海角──福爾摩沙抒情誌</a></h5>
+        <p class="card-text">本日價格：NT$245　歷史低價：NT$245</p>
+        <iframe src="plot_7390863873471.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/97241a9a-8187-4195-a573-9a921c04b9cc/353/569/90/False/wieReZ4jqT2vpPAPLsLmkA.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/wieReZ4jqT2vpPAPLsLmkA?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">舊情復燃</a></h5>
+        <p class="card-text">本日價格：NT$220　歷史低價：NT$220</p>
+        <iframe src="plot_9789863876380.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/1dc984df-000f-4cfb-86bf-d71ead052b02/353/569/90/False/yifYBw_kEz-sjWx9O6wmTg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/yifYBw_kEz-sjWx9O6wmTg?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">月娘照眠牀</a></h5>
+        <p class="card-text">本日價格：NT$220　歷史低價：NT$220</p>
+        <iframe src="plot_9789863875314.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/a21ea0b7-2449-4d16-b4db-1aa18c1993f3/353/569/90/False/JR_gAXmObD6EROWQrNPmjw.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/JR_gAXmObD6EROWQrNPmjw?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">只緣身在此山中</a></h5>
+        <p class="card-text">本日價格：NT$224　歷史低價：NT$224</p>
+        <iframe src="plot_9789863874911.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="簡媜">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/dcfdfd36-7d3d-4201-89ab-681303731c15/353/569/90/False/tR63QOkIkjSZNYP1XN8qJQ.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/tR63QOkIkjSZNYP1XN8qJQ?sId=df1055e2-8903-49f4-ba04-c8e557e66cec" target="_blank">好一座浮島</a></h5>
+        <p class="card-text">本日價格：NT$210　歷史低價：NT$210</p>
+        <iframe src="plot_9789863875666.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/3f321736-62ab-46cb-ae65-dabe29f7eea4/353/569/90/False/BZkTJbpWnTWsH4_ozeT9vA.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/BZkTJbpWnTWsH4_ozeT9vA?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">流浪者之歌／悉達多</a></h5>
+        <p class="card-text">本日價格：NT$252　歷史低價：NT$252</p>
+        <iframe src="plot_9786267095010.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/827cfb45-6d4c-43cb-866a-eb45ca8c20c7/353/569/90/False/8X4BYN4ZszavG3vs7B0Jdg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/8X4BYN4ZszavG3vs7B0Jdg?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">悉達多【獨家收錄保羅．科爾賀專文導讀、林懷民繆思分享】：一首印度的詩（流浪者之歌）</a></h5>
+        <p class="card-text">本日價格：NT$196　歷史低價：NT$196</p>
+        <iframe src="plot_9789864895397.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/921c4663-8c49-4f8f-a61f-e24755dbae11/353/569/90/False/JNfPTDEjDz-tAMfp3Egokg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/JNfPTDEjDz-tAMfp3Egokg?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">流浪者之歌【感動解讀版】</a></h5>
+        <p class="card-text">本日價格：NT$400　歷史低價：NT$400</p>
+        <iframe src="plot_9786269936137.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/f7453d28-8edd-4d0b-87ae-3f947835f381/353/569/90/False/jHi5IlslGTmTLqpPkwxScQ.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/jHi5IlslGTmTLqpPkwxScQ?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">園圃之歌：諾貝爾文學獎大師赫曼．赫塞的自然哲思與手繪詩畫</a></h5>
+        <p class="card-text">本日價格：NT$266　歷史低價：NT$266</p>
+        <iframe src="plot_9786269638079.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/a809baf5-4e7d-43c9-96e5-7d69fa248b50/353/569/90/False/6fn5ArUqVjSw56cshygW_Q.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/6fn5ArUqVjSw56cshygW_Q?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">德米安：徬徨少年時 (告別徬徨，堅定地做你自己。全新無刪減完整譯本，慕尼黑大學圖書館愛藏版)</a></h5>
+        <p class="card-text">本日價格：NT$245　歷史低價：NT$245</p>
+        <iframe src="plot_3069869881963.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/5f4ae374-cda4-4a0c-a27f-58f4eb5939e0/353/569/90/False/fUpsq8DF8Tq5Lguv3pHWuQ.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/fUpsq8DF8Tq5Lguv3pHWuQ?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">赫曼赫塞童話故事集</a></h5>
+        <p class="card-text">本日價格：NT$250　歷史低價：NT$250</p>
+        <iframe src="plot_3119864773930.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/f601d38b-894e-436d-852c-e48f41d06a75/353/569/90/False/uWrynH7_LjCJaQT5rWrZjg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/uWrynH7_LjCJaQT5rWrZjg?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">流浪者之歌（首度德文直譯本）</a></h5>
+        <p class="card-text">本日價格：NT$210　歷史低價：NT$210</p>
+        <iframe src="plot_3090000000515.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/ae0cd56f-8ec4-4e2d-bc97-29ea34073182/353/569/90/False/ib-jIoEV2Dqm0I1tAc6TWQ.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/ib-jIoEV2Dqm0I1tAc6TWQ?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">德米安【獨家收錄詹姆斯・法蘭科專文導讀】：埃米爾．辛克萊年少時的故事（徬徨少年時）</a></h5>
+        <p class="card-text">本日價格：NT$210　歷史低價：NT$210</p>
+        <iframe src="plot_9789864895403.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/449cd682-c515-465f-b6f3-c5b59e8310e3/353/569/90/False/VFQPtyjUrTGJSlcoqoICxg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/VFQPtyjUrTGJSlcoqoICxg?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">荒野之狼（首度德文直譯本）</a></h5>
+        <p class="card-text">本日價格：NT$245　歷史低價：NT$245</p>
+        <iframe src="plot_3090000005737.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/3bb495e7-b3a7-490f-be56-c4e3d0755850/353/569/90/False/8qvh-uvBNjeQ5sV5LtVHdw.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/8qvh-uvBNjeQ5sV5LtVHdw?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">荒野之狼</a></h5>
+        <p class="card-text">本日價格：NT$315　歷史低價：NT$315</p>
+        <iframe src="plot_9786263966987.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/dbaffb64-2df7-46df-9836-4b43eb375d74/353/569/90/False/SSmAUWRnWD-200t2EoH_qQ.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/SSmAUWRnWD-200t2EoH_qQ?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">流浪者之歌</a></h5>
+        <p class="card-text">本日價格：NT$245　歷史低價：NT$245</p>
+        <iframe src="plot_9786263744417.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/897fa0c7-1c7f-4005-9de8-784febd6e287/353/569/90/False/ZNYK-tlfkD-IZy3hlnFJAw.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/ZNYK-tlfkD-IZy3hlnFJAw?sId=d6601979-7050-43e1-a62e-529548a44063" target="_blank">德米安：彷徨少年時</a></h5>
+        <p class="card-text">本日價格：NT$228　歷史低價：NT$228</p>
+        <iframe src="plot_7289867101822.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/40dde703-286a-487c-acca-3d0e177e4d0a/353/569/90/False/iRXS-e-7fzumzrZdY8d_8Q.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/iRXS-e-7fzumzrZdY8d_8Q?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">車輪下（首度德文直譯本）</a></h5>
+        <p class="card-text">本日價格：NT$210　歷史低價：NT$210</p>
+        <iframe src="plot_3090000000590.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/5139dd71-3f40-4bbf-aaa6-752447892743/353/569/90/False/mj-jE6bxOTazX9ad0uwE7g.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/mj-jE6bxOTazX9ad0uwE7g?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">在書中發現自己的靈魂：慢讀赫塞</a></h5>
+        <p class="card-text">本日價格：NT$250　歷史低價：NT$250</p>
+        <iframe src="plot_3128000000104.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/0eb8b492-c683-4d13-8a2e-40fd1872ced9/353/569/90/False/p9r2phjlUzO8q-gEc3Ysmg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/p9r2phjlUzO8q-gEc3Ysmg?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">徬徨少年時（德文直譯本）</a></h5>
+        <p class="card-text">本日價格：NT$196　歷史低價：NT$196</p>
+        <iframe src="plot_3090000030292.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/e52679bc-171d-45f8-bf8a-8a159a9891ed/353/569/90/False/UHZLCrSJATqst2fZDCkzBA.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/UHZLCrSJATqst2fZDCkzBA?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">悠遊之歌（三版）</a></h5>
+        <p class="card-text">本日價格：NT$175　歷史低價：NT$175</p>
+        <iframe src="plot_9789864023936.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/cab95401-af95-4f91-9d80-41eee92dade2/353/569/90/False/kfbDCDZ4SD6jxk-LU1ireg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/kfbDCDZ4SD6jxk-LU1ireg?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">生命之歌</a></h5>
+        <p class="card-text">本日價格：NT$210　歷史低價：NT$210</p>
+        <iframe src="plot_3090000000496.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/f48eb899-1243-4d56-a687-e9d45c5de9ef/353/569/90/False/pnJCPVTatTGHkaHGe4iYMw.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/pnJCPVTatTGHkaHGe4iYMw?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">中學生好享讀：諾貝爾大師短篇小說選</a></h5>
+        <p class="card-text">本日價格：NT$225　歷史低價：NT$225</p>
+        <iframe src="plot_6709863201113.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/567c8c31-ebf2-4ffb-a5b1-7e294bb27479/353/569/90/False/By8ilup3JjmH2kf5ty2N8g.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/By8ilup3JjmH2kf5ty2N8g?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">鄉愁（德文直譯本）</a></h5>
+        <p class="card-text">本日價格：NT$196　歷史低價：NT$196</p>
+        <iframe src="plot_3090000006527.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/c81844a1-3034-4867-a324-b6f0bd00c252/353/569/90/False/6g6wxeuiYjuWU71oa_5Mzg.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/6g6wxeuiYjuWU71oa_5Mzg?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">荒野之狼（德文新譯本）</a></h5>
+        <p class="card-text">本日價格：NT$294　歷史低價：NT$294</p>
+        <iframe src="plot_3119864771400.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/b98f888a-ae90-4674-8796-0c691b798c30/353/569/90/False/3cIVTFd3fz6t9pp0NaJsyA.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/ebook/3cIVTFd3fz6t9pp0NaJsyA?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">徬徨少年時</a></h5>
+        <p class="card-text">本日價格：NT$175　歷史低價：NT$175</p>
+        <iframe src="plot_3090000000352.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/e921900f-2bfe-42d8-8547-198c1b3b42b1/353/569/90/False/pO0YjhmJajyGRrdkzlKsnA.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/audiobook/pO0YjhmJajyGRrdkzlKsnA?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">德米安：埃米爾．辛克萊年少時的故事（徬徨少年時）</a></h5>
+        <p class="card-text">本日價格：NT$210　歷史低價：NT$210</p>
+        <iframe src="plot_7384000000027.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-4" data-author="赫曼．赫塞">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="https://cdn.kobo.com/book-images/2ebd8c79-acb7-430a-abd8-3998815f26dd/353/569/90/False/5P5w8osOvzauH183YElyCw.jpg" class="img-fluid rounded-start" alt="封面" style="height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title"><a href="https://www.kobo.com/tw/zh/audiobook/5P5w8osOvzauH183YElyCw?sId=c475c524-d296-4cc1-bbe1-03dca7288f44" target="_blank">悉達多：一首印度的詩（流浪者之歌）</a></h5>
+        <p class="card-text">本日價格：NT$210　歷史低價：NT$210</p>
+        <iframe src="plot_7384000000026.html" width="100%" height="300"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+</div>
+<script>
+function filterByAuthor() {
+    const selected = document.getElementById("authorSelect").value;
+    document.querySelectorAll("#bookCards .card").forEach(card => {
+        card.style.display = (selected === "all" || card.dataset.author === selected) ? "" : "none";
+    });
+}
+</script>
 </body>
 </html>
