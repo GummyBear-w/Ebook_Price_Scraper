@@ -2,7 +2,7 @@ name: Daily Price Tracker
 
 on:
   schedule:
-    - cron: '0 3 * * *' # 每天台灣上午11點（UTC+8 = UTC+3）
+    - cron: '30 2 * * *' # 每天台灣上午10點半
   workflow_dispatch:
 
 jobs:
