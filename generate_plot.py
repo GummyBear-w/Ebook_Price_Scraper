@@ -73,7 +73,7 @@ html_template = f"""
         body {{
             font-family: sans-serif;
             margin: 2em;
-            background: #f5f5f5;
+            background: #f9f9f9;
         }}
         h1 {{
             margin-bottom: 0.5em;
@@ -84,25 +84,28 @@ html_template = f"""
             margin-bottom: 1.5em;
         }}
         .book-block {{
-            display: flex;
+            display: grid;
+            grid-template-columns: 120px 1fr;
             gap: 1em;
-            margin-bottom: 3em;
+            margin-bottom: 2em;
             padding: 1em;
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            align-items: start;
         }}
         .cover {{
-            width: 160px;
+            width: 100%;
             height: auto;
             border-radius: 4px;
+            object-fit: contain;
         }}
         .info {{
             flex: 1;
         }}
         .chart-frame {{
             width: 100%;
-            height: 320px;
+            height: 300px;
             border: none;
         }}
     </style>
@@ -120,7 +123,7 @@ html_template = f"""
             const selected = this.value;
             document.querySelectorAll(".book-block").forEach(block => {{
                 if (selected === "all" || block.dataset.author === selected) {{
-                    block.style.display = "flex";
+                    block.style.display = "grid";
                 }} else {{
                     block.style.display = "none";
                 }}
