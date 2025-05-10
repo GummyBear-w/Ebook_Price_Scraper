@@ -5,9 +5,9 @@ import os
 # 讀取資料
 csv_file = "book_prices.csv"
 df = pd.read_csv(csv_file)
-df["\u65e5\u671f"] = pd.to_datetime(df["\u65e5\u671f"])
-df["\u50f9\u683c"] = pd.to_numeric(df["\u50f9\u683c"], errors="coerce")
-df = df.dropna(subset=["\u50f9\u683c", "ISBN"])
+df["日期"] = pd.to_datetime(df["日期"])
+df["價格"] = pd.to_numeric(df["價格"], errors="coerce")
+df = df.dropna(subset=["價格", "ISBN"])
 
 # 確保 docs 資料夾存在
 os.makedirs("docs", exist_ok=True)
@@ -19,26 +19,26 @@ for isbn, group in df.groupby("ISBN"):
         continue  # 只有一天資料不用畫圖
     fig = px.line(
         group,
-        x="\u65e5\u671f",
-        y="\u50f9\u683c",
-        color="\u66f8\u540d",
+        x="日期",
+        y="價格",
+        color="書名",
         line_group="ISBN",
         hover_data=["作者", "連結"],
-        title=group["\u66f8\u540d"].iloc[0]
+        title=group["書名"].iloc[0]
     )
     plot_path = f"plot_{isbn}.html"
     fig.write_html(f"docs/{plot_path}", include_plotlyjs="cdn", full_html=False)
     isbn_to_plot_path[isbn] = plot_path
 
 # 得到最新日期以用於每本書最新價格
-latest_date = df["\u65e5\u671f"].max()
-latest_df = df[df["\u65e5\u671f"] == latest_date]
+latest_date = df["日期"].max()
+latest_df = df[df["日期"] == latest_date]
 
 # 各 ISBN 最低價格
-min_price = df.groupby("ISBN")["\u50f9\u683c"].min()
+min_price = df.groupby("ISBN")["價格"].min()
 
 # 以作者分群
-authors = ["\u5168\u90e8\u4f5c\u8005"] + sorted(df["\u4f5c\u8005"].unique())
+authors = ["全部作者"] + sorted(df["作者"].unique())
 
 # 生成 index.html
 with open("docs/index.html", "w", encoding="utf-8") as f:
@@ -58,7 +58,7 @@ with open("docs/index.html", "w", encoding="utf-8") as f:
         <select class="form-select" id="authorSelect" onchange="filterByAuthor()">
 """)
     for author in authors:
-        value = author if author != "\u5168\u90e8\u4f5c\u8005" else "all"
+        value = author if author != "全部作者" else "all"
         f.write(f'<option value="{value}">{author}</option>\n')
     f.write("""
         </select>
@@ -68,12 +68,12 @@ with open("docs/index.html", "w", encoding="utf-8") as f:
     for _, row in latest_df.iterrows():
         isbn = row["ISBN"]
         image = row["封面照片"]
-        title = row["\u66f8\u540d"]
-        price = row["\u50f9\u683c"]
-        link = row["\u9023\u7dda"]
-        author = row["\u4f5c\u8005"]
+        title = row["書名"]
+        price = row["價格"]
+        link = row["連結"]
+        author = row["作者"]
         min_p = min_price.get(isbn, price)
-        chart_html = f'<iframe src="{isbn_to_plot_path.get(isbn, "")}" width="100%" height="300"></iframe>' if isbn in isbn_to_plot_path else '<p class="text-muted">\u76ee\u524d\u7121\u6b77\u53f2\u50f9\u683c資\u6599</p>'
+        chart_html = f'<iframe src="{isbn_to_plot_path.get(isbn, "")}" width="100%" height="300"></iframe>' if isbn in isbn_to_plot_path else '<p class="text-muted">目前無歷史價格資料</p>'
         f.write(f"""
 <div class="card mb-4" data-author="{author}">
   <div class="row g-0">
