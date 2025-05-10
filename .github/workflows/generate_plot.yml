@@ -27,7 +27,7 @@ jobs:
           pip install pandas plotly
 
       - name: Generate interactive chart
-        run: python send_report.py
+        run: python generate_plot.py
 
       - name: Commit chart to docs/
         env:
