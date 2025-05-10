@@ -56,7 +56,7 @@ with open("docs/index.html", "w", encoding="utf-8") as f:
 <html lang=\"zh\">
 <head>
     <meta charset=\"UTF-8\">
-    <title>\ud83d\udcc4 電子書價格追蹤</title>
+    <title>電子書價格追蹤</title>
     <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\">
 </head>
 <body class=\"bg-light\">
