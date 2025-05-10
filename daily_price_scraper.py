@@ -16,8 +16,10 @@ def get_all_book_links(driver, wait, base_url):
     driver.get(base_url)
     book_links = []
     page_num = 1
+    max_pages = 10  # 最多處理 10 頁
 
-    while True:
+    current_url = driver.current_url
+    while page_num <= max_pages:
         print(f"正在處理第 {page_num} 頁...")
         random_sleep(2, 4)
 
@@ -32,20 +34,23 @@ def get_all_book_links(driver, wait, base_url):
 
         try:
             next_button = driver.find_element(By.CSS_SELECTOR, 'button.control-button[aria-label="next page"]')
-            is_disabled = (
-                next_button.get_attribute("aria-disabled") == "true"
-                or "disabled" in next_button.get_attribute("class")
-            )
-
-            if is_disabled:
+            if next_button.get_attribute("aria-disabled") == "true" or "disabled" in next_button.get_attribute("class"):
                 print("✅ 已到最後一頁")
                 break
             else:
                 driver.execute_script("arguments[0].scrollIntoView(true);", next_button)
                 random_sleep(0.8, 1.5)
                 driver.execute_script("arguments[0].click();", next_button)
-                page_num += 1
                 random_sleep(2, 4)
+    
+                # ⛳️ 加入這段確認 URL 是否變動
+                new_url = driver.current_url
+                if new_url == current_url:
+                    print("✅ 網址沒有變化，應是最後一頁")
+                    break
+                current_url = new_url
+    
+                page_num += 1
         except NoSuchElementException:
             print("❌ 找不到下一頁按鈕，結束")
             break
