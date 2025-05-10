@@ -23,7 +23,7 @@ for isbn, group in df.groupby("ISBN"):
         y="\u50f9\u683c",
         color="\u66f8\u540d",
         line_group="ISBN",
-        hover_data=["\u4f5c\u8005", "\u9023\u7d61"],
+        hover_data=["作者", "連結"],
         title=group["\u66f8\u540d"].iloc[0]
     )
     plot_path = f"plot_{isbn}.html"
