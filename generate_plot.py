@@ -67,7 +67,7 @@ with open("docs/index.html", "w", encoding="utf-8") as f:
 """)
     for _, row in latest_df.iterrows():
         isbn = row["ISBN"]
-        image = row["\u5c01\u9762\u7167"]
+        image = row["封面照片"]
         title = row["\u66f8\u540d"]
         price = row["\u50f9\u683c"]
         link = row["\u9023\u7dda"]
