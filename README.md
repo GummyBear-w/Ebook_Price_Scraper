@@ -14,7 +14,7 @@
 2. **報告通知 (`send_report.py`)**
    - 每日比對最新價格與昨日價格，若有變化則記錄上下漲項目，否則顯示「都沒變」。
    - 將結果寄送至指定 Email，提醒使用者關注價格異動。
-   - <img src="https://github.com/GummyBear-w/Ebook_Price_Scraper/raw/main/email_report.png" width = "90%">
+   - <img src="https://github.com/GummyBear-w/Ebook_Price_Scraper/raw/main/email_report.png" width = "100%">
 
 3. **視覺化介面產生 (`generate_plot.py`)**
    - 使用 `pandas` 與 `plotly.express` 產生每本書的歷史價格折線圖。
