@@ -19,6 +19,7 @@
 3. **視覺化介面產生 (`generate_plot.py`)**
    - 使用 `pandas` 與 `plotly.express` 產生每本書的歷史價格折線圖。
    - 將視覺化結果以 HTML 格式嵌入網頁，並自動產生 `docs/index.html` 作為總覽介面。
+   - 頁面內容請至文件最下方預覽
 
 ## 技術架構
 
