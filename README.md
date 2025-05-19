@@ -33,7 +33,7 @@
 
 | 檔案 / 資料夾         | 功能說明 |
 |----------------------|----------|
-| `scrape.py`          | 每日自動爬取 Kobo 書籍價格與資訊，儲存至 `book_prices.csv`。 |
+| `daily_price_scraper.py`          | 每日自動爬取 Kobo 書籍價格與資訊，儲存至 `book_prices.csv`。 |
 | `send_report.py`     | 比對前一日與當日價格，產出變動報告並寄送 Email 通知。 |
 | `generate_plot.py`   | 根據歷史價格資料產生視覺化圖表與 HTML 展示頁面。 |
 | `book_prices.csv`    | 儲存所有每日爬取的書籍價格資訊。 |
