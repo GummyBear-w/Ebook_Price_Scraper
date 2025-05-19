@@ -40,11 +40,10 @@
 
 ## 觀看視覺化價格追蹤頁面
 
-請透過下列連結開啟每日更新的視覺化頁面（由 GitHub Pages 自動生成）：
-
-[價格追蹤頁面](https://gummybear-w.github.io/Ebook_Price_Scraper/)
-
 <img src="https://github.com/GummyBear-w/Ebook_Price_Scraper/raw/main/demo.gif" width="85%">
+
+有興趣的話可以透過下列連結開啟每日更新的視覺化頁面（由 GitHub Pages 自動生成）：
+[價格追蹤頁面](https://gummybear-w.github.io/Ebook_Price_Scraper/)
 
 頁面中可依作者篩選、瀏覽封面、點擊連結查看書籍頁面，並觀察每本書的價格變化趨勢。
 
