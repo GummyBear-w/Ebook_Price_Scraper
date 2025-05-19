@@ -42,7 +42,7 @@
 
 ## 觀看視覺化價格追蹤頁面
 
-<img src="https://github.com/GummyBear-w/Ebook_Price_Scraper/raw/main/demo.gif" width="85%">
+<img src="https://github.com/GummyBear-w/Ebook_Price_Scraper/raw/main/demo.gif" width="90%">
 
 有興趣的話可以透過下列連結開啟每日更新的視覺化頁面（由 GitHub Pages 自動生成）：  
 [價格追蹤頁面](https://gummybear-w.github.io/Ebook_Price_Scraper/)
