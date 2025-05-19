@@ -44,6 +44,8 @@
 
 [價格追蹤頁面](https://gummybear-w.github.io/Ebook_Price_Scraper/)
 
+<img src="docs/demo.gif" width="600">
+
 頁面中可依作者篩選、瀏覽封面、點擊連結查看書籍頁面，並觀察每本書的價格變化趨勢。
 
 ---
