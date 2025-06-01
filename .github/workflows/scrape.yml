@@ -35,7 +35,10 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}
+          
+          git fetch origin main
+          git pull --rebase origin main
+          
           git add book_prices.csv
           git commit -m "🧾 Auto update book_prices.csv" || echo "No changes"
-          git push origin HEAD:${{ github.ref }}
-
+          git push origin main
